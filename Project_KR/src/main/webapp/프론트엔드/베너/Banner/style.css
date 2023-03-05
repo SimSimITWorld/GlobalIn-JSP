@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+.section input[id*="slide"]{	/* 섹션클래스 안에 id 값이 slide인 input을 선택 */
+	display: none;
+}
+
+.section .slidewrap {
+	max-width: 100%;			/* 최대 가로넓이를 1200px로 설정 */
+	margin: 0 auto;				/* 좌우를 0과 auto로 블록요소를 가운데 정렬하는 값으로 설정 */
+	overflow: hidden;			/* 영역을 벗어나면 보이지 않도록 설정 */
+	text-align: center;
+}
+
+.section .slidelist {			/* section내에 있는 ul(slidelist)를 선택 */
+	white-space: nowrap;		/* 안쪽 인라인요소들의 줄바꿈을 없앰 */
+	font-size: 0;				/* 안쪽 빈 영역 지우기 */
+	padding: 0;					
+	margin: 0;					/* padding과 margin 값 0으로 설정하여 사진 겹치지 않고 넘어가지 않게 하기 */
+	margin-top: 8%;				/* 헤드부분과의 간격부여 */
+	height: 500px;				/* 높이는 500px로 설정 */
+	max-height: 500px;
+}
+
+.section .slidelist > li {		/* secion에 있는 ul(slidelist)내에 있는 li선택 */
+	display: inline-block;		/* 디스플레이는 inline-block */
+	vertical-align: middle;		/* 세로정렬은 가운데로 설정 */
+	width: 100%;				/* 가로 값은 부모요소를 가득 채우는 100%로 지정 */
+	transition: all .5s;		/* 자연스러운 애니메이션효과를 부여, 속성은 전체, 0.5초의 시간으로 움직이도록 설정 */
+}
+
+.section .slidelist > li > a {	/* section에 있는 ul(slidelist)내에 있는 li의 a태그 선택 */
+	display: block;				/* 블록값을 주어 안쪽 콘텐츠를 다 담을 수 있도록 설정 */
+	position: relative;			/* 버튼으로 사용할 label 태그를 자율배치시키기 전 기준을 잡을 수 있도록 relative 값 부여 */
+}
+
+.section .slidelist > li > a img { /* section에 있는 ul(slidelist)내에 있는 li의 a태그에 존재하는 img파일 설정 */
+	width: 100%;				/* 가로값 100%로 사용 */
+	max-height: 500px;
+	max-width: 1000px;
+	border-radius: 15px;
+	
+}
+
+.section .slidelist label {		/* 왼쪽, 오른쪽 버튼으로 사용할 label 값 설정 */
+	position: absolute;			/* 자율배치할 수 있도록 absolute 값 부여 */
+	z-index: 10;				/* 우선순위는 10 */
+	top: 50%;					/* 위쪽으로부터 50%에 위치시킴 */
+	transform: translateY(-50%);/* 자신을 기준으로 높이의 반만큼 위쪽으로 당김으로써 중앙에 위치 */
+	padding: 50px;				/* 클릭할 수 있도록 padding 값 지정 */
+	cursor: pointer;			/* 마우스가 올라갔을 때 커서가 바뀌도록 값 지정 */  
+}
+
+.section .slidelist .left {		/* 왼쪽버튼 값 지정 */
+	left: 30px;					/* 왼쪽 기준 30px에 위치 */
+	background: url('Banner_Point_pic/화살표1.png') center center / 100% no-repeat; /* 화살표 속성을 background 속성으로 정의 */
+}
+
+.section .slidelist .right {	/* 오른쪽버튼 값 지정 */
+	right: 30px;				/* 오른쪽 기준 30px에 위치 */
+	background: url('Banner_Point_pic/화살표2.png') center center / 100% no-repeat; /* 화살표 속성을 background 속성으로 정의 */ 
+}
+
+/* width를 100%로 설정해놓았기 때문에 100씩 차이나게 설정해줘야 이상없이 화면변환 가능 */
+
+.section [id="slide01"]:checked ~ .slidewrap .slidelist > li {	/* section에서 id가 slide01인 파일이 체크가 되면 slidewrap에 있는 slidelist의 li의 값 변경*/
+	transform: translateX(0%);		/* x좌표를 0%로 설정하여 첫번째 사진이 보여지도록 함 */
+}
+
+.section [id="slide02"]:checked ~ .slidewrap .slidelist > li {	/* section에서 id가 slide02인 파일이 체크가 되면 slidewrap에 있는 slidelist의 li의 값 변경*/
+	transform: translateX(-100%);	/* x좌표를 -100%로 설정하여 두번째 사진이 보여지도록 변경 */
+}
+
+.section [id="slide03"]:checked ~ .slidewrap .slidelist > li { /* section에서 id가 slide03인 파일이 체크가 되면 slidewrap에 있는 slidelist의 li의 값 변경*/
+	transform: translateX(-200%);	/* x좌표를 -200%로 설정하여 세번째 사진이 보여지도록 변경 */
+}
+
+.section .slide-control [class="control1"] {	/* section의 slide-control에서 class가 control1일 경우 */
+	display: none;	/* 화면에 보이지 않게함 */
+}
+
+/* 인풋에 체크가 되면 각각 display에 보이도록 설정 */
+.section [id="slide01"]:checked ~ .slidewrap .control01 {display: block;}
+.section [id="slide02"]:checked ~ .slidewrap .control02 {display: block;}
+.section [id="slide03"]:checked ~ .slidewrap .control03 {display: block;}

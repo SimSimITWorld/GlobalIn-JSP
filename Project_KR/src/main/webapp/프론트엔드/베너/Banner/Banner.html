@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Banner main</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="section">	<!-- 영역설정 -->
+		<input type="radio" name="slide" id="slide01" checked>		<!-- 1페이지(우선 선택이 되어야 하기에 checked 설정 -->
+		<input type="radio" name="slide" id="slide02">				<!-- 2페이지 -->
+		<input type="radio" name="slide" id="slide03">				<!-- 3페이지 -->
+		
+		<div class="slidewrap">
+			<ul class="slidelist">
+				<li>	<!-- 첫번째 이미지 설정 -->
+					<a>												<!-- a태그에서 버튼클릭 이동모션 부여 -->
+						<label for="slide03" class="left"></label>	<!-- 이전 페이지 인풋아이디값 class는 버튼스타일 -->
+						<img src="Banner_pic/001.png" width="100%">				<!-- 첫번째 이미지 삽입 -->
+						<label for="slide02" class="right"></label>	<!-- 다음 페이지 인풋아이디값 class는 버튼스타일 -->
+					</a>
+				</li>
+				<li>	<!-- 두번째 이미지 설정 -->
+					<a>												<!-- a태그에서 버튼클릭 이동모션 부여 -->
+						<label for="slide01" class="left"></label>	<!-- 이전 페이지 인풋아이디값 class는 버튼스타일 -->
+						<img src="Banner_pic/002.png" width="100%">				<!-- 첫번째 이미지 삽입 -->
+						<label for="slide03" class="right"></label>	<!-- 다음 페이지 인풋아이디값 class는 버튼스타일 -->
+					</a>
+				</li>
+				<li>	<!-- 세번째 이미지 설정 -->
+					<a>												<!-- a태그에서 버튼클릭 이동모션 부여 -->
+						<label for="slide02" class="left"></label>	<!-- 이전 페이지 인풋아이디값 class는 버튼스타일 -->
+						<img src="Banner_pic/003.png" width="100%">				<!-- 첫번째 이미지 삽입 -->
+						<label for="slide01" class="right"></label>	<!-- 다음 페이지 인풋아이디값 class는 버튼스타일 -->
+					</a>
+				</li>
+				
+				
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

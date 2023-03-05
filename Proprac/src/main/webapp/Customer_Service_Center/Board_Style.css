@@ -1,0 +1,298 @@
+@charset "UTF-8";
+
+
+
+ul, li { /* 리스트 값 설정 */
+	list-style: none;	/* 리스트 스타일 설정 */
+}
+
+a {	/* a태그 설정 */
+	text-decoration: none;	/* a태그 선택시 밑줄 그어지지 않게 설정 */
+	color: inherit;			/* 색 설정 */
+}
+
+.board_wrap { /* 전체적인보드 설정 */
+	width: 1000px;			/* 너비설정 */
+	margin: 100px auto;		/* 위아래값은 설정값 좌우는 auto로 외부너비 설정 */
+}
+
+.board_title { /* 보드 타이틀 설정 */
+	margin-bottom: 30px;	/* 보드 타이틀 아래쪽 여백 */
+}
+
+.board_title strong { /* 강조한 글자 설정 */
+	font-size: 30px;			/* 폰트사이즈 설정(3rem=최상위 값에 3을 곱한 값만큼 커짐 그렇기에 최상위 값을 미리 설정) */
+}
+
+.board_title p { /* 보드 타이틀에 있는 p태그 값 설정 */
+	margin: 5px;				/* 여백 설정 */
+	font-size: 15px;			/* 폰트사이즈 설정 */
+}
+
+.bt_wrap { /* 버튼 설정 */
+	margin-top: 30px;			/* 위에 여백 설정 */
+	text-align: center;			/* 가운데 정렬 */
+	font-size: 0;				/* 폰트사이즈 설정 */
+}
+
+.bt_wrap input { /* a태그를 가지고 있는 버튼 설정 */
+	display: inline-block;		/* 자신만의 모양을 가지고 옆에 위치할 수 있게 설정 */
+	min-width: 80px;			/* 최소너비 설정 */
+	margin-left: 10px;			/* 왼쪽에 여백 부여 */
+	padding: 10px;				/* 여백 설정 */
+	border: 1px solid #000;		/* 1px의 solid 타입으로 테두리 설정 */
+	border-radius: 2px;			/* 테두리 둥글게 설정 */
+	font-size: 15px;			/* 폰트사이즈 설정 */  
+}
+
+.bt_wrap input:hover{
+	cursor: pointer;
+}
+
+.bt_wrap input:first-child { /* a태그 첫번째 요소 설정 */
+	margin-left: 0;				/* 왼쪽여백 설정 */
+}
+
+.bt_wrap input.on {	/* a태그 중 on이라는 클래스를 가지고 있는 요소 설정 */
+	background: #000;			/* 배경색 설정 */
+	color: #fff;				/* 색상 설정 */  
+}
+
+.board_write1 { /* 리스트영역 설정 */
+	width: 100%;				/* 너비 설정 */
+	border-top: 2px solid #000;	/* 리스트 테두리 설정 */
+}
+
+.board_write1 > div { /* 리스트 영역에서 전체 div단락 설정  */
+	border-bottom: 1px solid #ddd;	/* 아래 테두리 설정 */
+	font-size: 0;					/* inline-block시에는 여백이 존재해서 폰트사이즈를 0으로 설정 */
+}
+
+.board_write1 > div.top { /* 리스트 영역에서 top이라는 class를 가진 값 설정 */
+	border-bottom: 1px solid #999; 	/* 아래 테두리 설정 */
+}
+
+.board_write1 > div:last-child { /* 리스트영역의 마지막 단락 설정 */
+	border-bottom: 1px solid #000;	/* 아래 테두리 설정 */
+}
+
+.board_write1 > div > div { /* 리스트영역의 단락 안에 있는 단락 설정 */
+	display: inline-block;		/* 요소들을 옆으로 배치하기 위해 설정 */
+	vertical-align: middle;		/* 세로값 정렬 */
+	text-align: center;			/* 가운데 정렬 */
+	padding: 15px 0;			/* 여백 설정 */
+	font-size: 15px;			/* 폰트사이즈 설정 */
+}
+
+.board_write1 > div.top > div { /* 리스트영역의 top을 가진 단락 안에 있는 단락 설정 */
+	font-weight: 600;			/* 폰트너비 설정 */
+}
+
+.board_write1 .num { /* 리스트영역에 있는 모든 num이라는 값의 요소 설정 */
+	width: 10%;	/* 너비설정 */
+}
+
+.board_write1 .title { /* 리스트영역에 있는 모든 title이라는 값의 요소 설정 */
+	width: 60%;	/* 너비설정(타이틀은 넓기 때문에 너비 많이 부여) */
+	text-align: left;	/* 왼쪽 정렬 */
+}
+
+.board_write1 .top .title { /* 리스트영역에 있는 top의 title 설정 */
+	text-align: center;	/* 가운데정렬 */
+}
+
+.board_write1 .writer { /* 리스트영역에 있는 모든 writer이라는 값의 요소 설정 */
+	width: 10%;	/* 너비설정 */
+}
+
+.board_write1 .date { /* 리스트영역에 있는 모든 date이라는 값의 요소 설정 */
+	width: 10%;	/* 너비설정 */
+}
+ 
+.board_write1 .count { /* 리스트영역에 있는 모든 count이라는 값의 요소 설정 */
+	width: 10%;	/* 너비설정 */
+}
+
+.board_page { /* 페이지영역 설정 */
+	margin-top: 30px;	/* 위 여백 설정 */
+	text-align: center;	/* 가운데 정렬 */
+	font-size: 0;		/* 폰트사이즈 설정 */
+}
+
+.board_page a {	/* 페이지영역의 a태그 설정 */
+	display: inline-block;		/* 옆으로 정렬되어 보이게 설정 */
+	width: 32px;				/* 너비설정 */
+	height: 32px;				/* 높이설정 */
+	box-sizing: border-box;		/* 패딩이 박스사이즈를 넘지말라는 값을 설정 */
+	vertical-align: middle;		/* 세로 가운데 정렬 */
+	line-height: 100%;			/* 라인 값 설정 */
+	border: 1px solid #ddd;		/* 테두리설정 */
+	border-left: 0;				/* 테두리왼쪽설정 */
+}
+
+.board_page a.bt { /* 페이지영역의 a태그 중 bt가 들어가는 요소 값 설정 */
+	padding-top: 10px;			/* 위쪽 여백 설정 */
+	font-size: 12px;			/* 폰트사이즈 설정 */
+	letter-spacing: -1px;		/* 자간 사이를 줄이는 설정 */
+}
+
+.board_page a.num { /* 페이지영역의 a태그 중 num가 들어가는 요소 값 설정 */
+	padding-top: 9px;			/* 위쪽 여백 설정 */
+	font-size: 12px;			/* 폰트사이즈 설정 */
+}
+
+.board_page a:first-child { /* 페이지영역의 a태그 중 첫번째 요소 설정 */
+	border-left: 1px solid #ddd;/* 테두리왼쪽설정 */	
+}
+
+.board_page a.num.on { /* 페이지영역의 a태그 중 num이 들어가 있고 on이 들어가는 요소 값 설정 */
+	border-color: #ddd;			/* 테두리 색상 설정 */
+	background: #fff;			/* 배경 색상 설정 */
+	color: #000;				/* 색상 설정 */
+}
+
+.board_page a.num.on:hover { /* 페이지영역의 a태그 중 num이 들어가 있고 on이 들어가는 요소 값 설정 */
+	border-color: #ddd;			/* 테두리 색상 설정 */
+	background: #c0c0c0;			/* 배경 색상 설정 */
+	color: #000;				/* 색상 설정 */
+}
+
+.board_view { /* 작성된 글 전체 설정 */
+	width: 100%;				/* 너비설정 */
+	border-top: 2px solid #000;	/* 선 위쪽 설정 */
+	
+}
+
+.board_view .title { /* 작성된 글 중 타이틀 설정 */
+	padding: 20px 15px;				/* 여백설정 */
+	border-bottom: 1px dashed #ddd; /* 아래쪽 선 설정 */
+	font-size: 20px;				/* 폰트사이즈 설정 */	
+}
+
+.board_view .info {	/* 작성된 글 중 정보단락 설정 */
+	padding: 15px;					/* 여백설정 */
+	border-bottom: 1px solid #999;	/* 아래쪽 선 설정 */
+	font-size: 0;					/* 폰트사이즈 설정 */
+}
+
+.board_view .info dl { /* 작성된 글 중 정보단락 구간 중 dl(한 정보의 모음) 설정 */
+	position: relative;				/* 설정된 값에 따라 움직이도록 설정 */
+	display: inline-block;			/* 옆으로 정렬 */
+	padding: 0 20px;				/* 공백설정 */
+}
+
+.board_view .info dl:first-child { /* 첫번째 dl 설정 */
+	padding-left: 0;
+}
+
+.board_view .info dl::before { /* 설정된 값 앞에 부여할 값 설정 (ex. 여기서는 dl에 부여했기에 각 dl의 앞에 부여한 값이 나옴) */
+	content: "";					/* 들어갈 값 설정 */
+	position: absolute;				/* 자유지정 */
+	top: 1px;						/* 위쪽 설정 */
+	left: 0;						/* 왼쪽 설정 */
+	display: block;					/* display 설정 */
+	width: 1px;						/* 너비 설정 */
+	height: 13px;					/* 높이 설정 */
+	background: #ddd;				/* 배경 설정 */
+}
+
+.board_view .info dl:first-child::before { /* 첫번째 값에는 별도의 설정 */
+	display: none;
+}
+
+.board_view .info dl dt,
+.board_view .info dl dd { /* 작성된 글 중 정보단락 구간 중 dl(한 정보의 모음)의 세부내용들인 dt와 dd 설정 */
+	display: inline-block;			/* 옆으로 정렬 */
+	font-size: 12px;
+}
+
+.board_view .info dl dt { /* 세부내용 중 dt 설정 */
+	
+}
+
+.board_view .info dl dd { /* 세부내용 중 dd 설정 */
+	margin-left: 10px;				/* 왼쪽 여백 설정 */
+	color: #777;					/* 색상 설정 */
+}
+
+.board_view .cont {	/* 작성된 글 본문 설정 */
+	padding: 15px;					/* 여백 설정 */
+	border-bottom: 1px solid #000;	/* 아래쪽 선 설정 */
+	line-height: 160%;				/* 선 높이 설정 */
+	font-size: 14px;				/* 폰트사이즈 설정 */
+}
+
+/* 문의게시판 부분 */
+
+.board_write { /* 문의게시판 글 작성 전체적인 설정 */
+	width: 100%;					/* 너비설정 */
+	border-top: 2px solid #000; 	/* 위쪽 선 설정 */
+}
+
+.board_write .title,
+.board_write .info { /* 문의게시판의 타이틀과 정보부분 설정 */
+	padding: 15px;					/* 여백설정 */
+}
+
+.board_write info {	/* 문의게시판의 정보부분 설정 */
+	border-top: 1px dashed #ddd;	/* 위쪽에 점선 설정 */
+	border-bottom: 1px solid #000;	/* 아래쪽에 실선 설정 */
+	font-size: 0;
+}
+
+.board_write cont {	/* 문의게시판의 내용부분 설정 */
+	border-bottom: 1px solid #000;	/* 아래쪽에 실선 설정 */
+}
+
+.board_write .cont textarea { /* 문의게시판의 내용부분 중 텍스트라인 설정 */
+	display: block;					/* 블록처리해서 밑에 선과 떨어지지 않도록 설정 */
+	width: 100%;					/* 너비설정 */
+	height: 300px;					/* 높이설정 */
+	padding: 15px;					/* 여백설정 */
+	box-sizing: border-box;			/* 설정한 값에 들어갈 수 있게 설정 */
+	border: 0;						/* border 설정 */
+	resize: vertical;				/* 사이즈 변경은 위아래로만 가능하도록 설정 */
+}
+
+.board_write .title dt,
+.board_write .title dd,
+.board_write .info dt, .board_write .info dd { /* 타이틀, 정보부분 dt, dt설정 */
+	display: inline-block;			/* 좌우정렬 */
+	vertical-align: middle;			/* 세로라인 기준으로 가운데 정렬 */
+	font-size: 15px;				/* 폰트사이즈 설정 */
+} 
+
+.board_write .info dl { /* 정보영역 전체값 설정 */
+	display: inline-block;			/* 좌우정렬 */
+	width: 50%;						/* 너비설정 */
+	vertical-align: middle;			/* 세로라인 기준으로 가운데 정렬 */
+}
+
+.board_write .title dt,
+.board_write .info dt { /* 정보부분 dt설정 */
+	width: 100px;					/* 너비설정 */
+}
+
+.board_write .title dd { /* 정보부분 타이틀의 dd설정 */
+	width: calc(100% - 150px);		/* 너비설정(가로길이에 따라 달라지기 때문에 값을 이렇게 설정(여기에 사용한 값은 이미 설정해놓은 너비에서 100px만큼 삭감) */
+}
+
+.board_write .title input[type="text"] { /* 정보부분 타이틀 영역의 input중 타입이 text인 요소 설정 */
+	width: 80%;						/* 너비설정 */ 
+	padding: 10px;
+}
+
+.board_write input[type="text"],
+.board_write input[type="password"] { /* 정보부분 타이틀 영역의 input중 타입이 text인 요소와 password인 요소 설정 */
+	padding: 10px;					/* 여백설정 */
+	box-sizing: border-box;			/* 설정한 값에 들어갈 수 있게 설정 */
+}
+
+.board_write > div { /* 리스트 영역에서 전체 div단락 설정  */
+	border-bottom: 1px solid #ddd;	/* 아래 테두리 설정 */
+	font-size: 0;					/* inline-block시에는 여백이 존재해서 폰트사이즈를 0으로 설정 */
+}
+
+.board_write > div:last-child { /* 리스트영역의 마지막 단락 설정 */
+	border-bottom: 1px solid #000;	/* 아래 테두리 설정 */
+}

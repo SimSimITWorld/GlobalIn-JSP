@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+@font-face { /* 요기조기 타이틀 폰트 */
+    font-family: 'HSSummer';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/HSSummer.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face { /* 메뉴바 폰트 */
+    font-family: 'ONE-Mobile-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	margin: 0; /* 바 사이드 공백 제거 */
+}
+
+a { /* 바 내에 있는 글자구성 */
+	text-decoration: none; 			/* 텍스트 밑줄 제거 */
+	color: black;					/* 글자색 */
+}
+
+.navbar { /* 바 전체구성 */
+	display: flex;					/* 플렉스로 보이게하기 */
+	justify-content: space-between;	/* 왼쪽 오른쪽 정렬 */
+	align-items: center;			/* 수직축 방향 정렬 */
+	background-color: white;		/* 배경색 */
+	padding: 8px 17%;				/* 위 8px 옆 17% 공백 */
+}
+
+.navbar_logo { /* 바 로고라인 */
+	font-size: 40px;				/* 로고 사이즈 */
+	color: green;					/* 로고 색상 */
+	padding-left: 73px;
+}
+
+.navbar_logo a { /* 바 요기조기 */
+	font-family: 'HSSummer', sans-serif;	/* 요기조기 글 스타일 변경 */
+	font-size: 35px;						/* 요기조기 글 사이즈 */
+	color: green;							/* 요기조기 글 색상 */
+}
+
+.navbar_menu {	/* 오른쪽 메뉴바 */
+	font-family: 'ONE-Mobile-Title', serif;	/* 오른쪽 메뉴바 글 스타일 변경*/
+	display: flex;							/* 오른쪽 메뉴바 플렉스로 변경*/
+	list-style: none;						/* 리스트 형식이기 때문에 · 있는거 지워주기  */
+	padding-left: 0;						/* 메뉴에 있는 여백 지워주기 */
+}
+
+.navbar_menu li { /* 메뉴바에 있는 리스트 꾸미기 */
+	padding: 8px 12px;				/* 리스트들 사이의 공간할당 */
+}
+
+.navbar_menu li:hover {	/* 마우스 올렸을 때 변화 */
+	background-color: palegreen;		/* 올렸을 때 색 */
+	border-radius: 5px;					/* 올렸을 때 테두리 굴곡 */
+}
+
+.navbar_toggleBtn {	/* 메뉴 열고 닫는 토글 설정 */
+	display: none;						/* 기본 창사이즈일 경우 토글버튼 나오지 않게 함 */
+	position: absolute;					/* 기존 navbar 설정에서 벗어나 자기만의 값으로 설정 */
+	right: 32px;						/* 토글을 왼쪽 상단에서 오른쪽 상단으로 이동 */
+	font-size: 40px;					/* 토글 사이즈 설정 */
+	color: green;
+}
+
+@media screen and (max-width: 1150px){ 	/* 바 반응형 레이아웃으로 설정 */
+	.navbar {							/* 바 형식 변환 */
+		flex-direction: column;			/* max-width 설정 값보다 낮아지면 column 형식으로 변환 */
+		align-items: flex-start;		/* 수평에서 가운데가 아닌 왼쪽으로 놓기 위해 설정 */
+		padding: 8px 24px;				/* 이걸 설정하지 않으면 hover가 너무 꽉 채우기 때문에 여유공간할당 */
+	}
+	
+	.navbar_menu {						/* 바 메뉴 형식 변환 */
+		display: none;					/* 화면이 작아졌을 때 바로 메뉴 안 보이게 설정 */
+		flex-direction: column;			/* 메뉴도 설정 값보다 낮아지면 column 형식으로 변환 */
+		align-items: center;			/* 가운데에 오도록 설정 */
+		width: 100%;					/* 기본적으로 메뉴자체 너비가 작기 때문에 설정해줘야 가운데로 이동됨 */
+	}
+	
+	.navbar_menu li {					/* 메뉴에 마우스 올렸을 때 화면에 꽉차게 설정 */
+		width: 100%;					/* 너비를 꽉 채워줌 */
+		text-align: center;				/* 텍스트는 너비를 설정하게 되면 왼쪽으로 붙기 때문에 별도 설정필요 */
+	}
+	
+	.navbar_toggleBtn {					/* 토글 설정 */
+		display: block;					/* block 형식으로 설정 */
+	}
+	
+	.navbar_menu.active {				/* 메뉴 active 확인 */
+		display: flex;					/* 토글이 설정되었다면 flex로 보여줌 */
+	}
+	
+	.nav_menu {
+		display: none;
+	}
+}
+
+
+.search_box {	/* 검색바 전체구성 */
+	padding: 10px;						/* 여백설정 */
+	position: absolute;					/* 단독행동 */
+	top: 28px;							/* 상단으로부터의 간격설정 */
+	left: 33%;						/* 오른쪽에서부터 얼마나 떨어져있을지 설정 */
+	border-radius: 50px;				/* 테두리 굴곡 */
+	border: 1px solid green;			/* 테두리 값 설정 */
+	transition: .5s;					/* 애니메이션 속도 0.5초로 설정 */
+	
+}
+
+.search_box:hover {	/* 검색바에 마우스 올렸을 때 효과 */
+	box-shadow: 0 0 .5px 1px green;		/* 그림자효과 가로위치 0, 세로위치 0, blur(흐릿함) 0.5, spread(양수=그림자확장, 음수=그림자축소), 색상 연두색 */
+}
+
+.search_txt {	/* 검색창 설정 */
+	padding: 0;				/* 여백 0 */
+	width: 0px;				/* 너비 0 */
+	border: none;			/* 테두리 0 */
+	outline: none;			/* 바깥선 0 */
+	float: left;			/* 왼쪽에 띄워놓기 */
+	font-size: 1rem;		/* 폰트사이즈를 1배로 생성 */
+	line-height: 15px;		/* 텍스트 라인 높이 설정 */
+	transition: .4s;		/* 애니메이션 속도 0.4초로 설정 */
+}
+
+.search_box:hover > .search_txt {	/* search_box에 마우스를 올렸을 때 search_txt 값 변경 */
+	padding:  0 6px;
+	width: 400px;
+}
+
+
+.search_btn {
+	text-decoration: none;	/* 선으로 텍스트를 꾸밀 수 있게해줌 */
+	display: flex;			/* 플렉스로 설정 */
+	justify-content: center;/* 플렉스 요소의 수평방향 정렬 방식 설정 */
+	align-items: center;	/* 수직방향 가운데로 설정 */
+	width: 15px;
+	height: 15px;
+	border-radius: 30px;
+}
+
+.nav_menu ul {
+	font-family: 'ONE-Mobile-Title', serif;
+	font-size: 12px;
+	position: absolute;
+	list-style-type: none;
+	right:17.1%;
+	
+}
+
+.nav_menu ul li {
+	display: inline;
+	border-left: 1px solid #c0c0c0;
+	padding: 0px 10px 0px 10px;
+	margin: 5px 0px 5px 0px;
+}
+
+.nav_menu ul li:first-child {
+	border-left: none;
+}
+
+.navbar_menu .drop_menu3 {
+	list-style: none; 
+	text-align: center;
+	line-height: 20px;
+	top: 65px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	right: 16.1%;
+	opacity: 0;
+	visibility: hidden;
+	background: white;
+	border-radius: 15px;
+}
+
+.navbar_menu li:hover .drop_menu3{
+	top: 65px;
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.3s ease;
+}
+
+.navbar_menu .drop_menu3 li:hover {
+	background-color: white;
+}
+
+
+
+
+@media screen and (max-width: 1550px){
+	.search_box {
+		display: none;
+	}
+}

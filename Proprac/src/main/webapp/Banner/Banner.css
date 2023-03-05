@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+*{
+	box-sizing: border-box;		/* 전체 box사이징은 border-box */
+}
+
+.carousel {			/* 배너 전체값 */
+	padding-left: 10px;		/* 왼쪽 여백 10px */
+	padding-right: 10px;	/* 오른쪽 여백 10px */
+	max-width: 1800px;		/* 화면 조절해도 2320px을 넘지 않게 최대값 설정(이미지는 2300px이지만 오른쪽 여백 10px을 줄 예정이기 때문에 2320으로 설정 */ 
+	margin: 0 auto;			/* 중앙 정렬 속성 */
+}
+
+.carousel-cell {	/* 배너 안 이미지값 */
+	width: 1780px;			/* 너비 2300px */
+	height: 500px;			/* 높이 500px */
+	margin: 0;				/* 바깥쪽 여백 0 */
+	padding: 0;				/* 안쪽 여백 0 */
+	max-height: 500px;		/* 최대 높이 500px */
+	margin-right: 10px;		/* 이미지들 사이에 공백을 주기위해 각 이미지마다 오른쪽에 10px만큼의 공백을 부여 */
+	border-radius: 15px;	/* 테두리를 둥글게 만들어주기 위해 15px값 부여 */
+}
+
+/*
+.carousel-cell {		이건 수정전 코드(박스 여러개 보이게 하는 거)
+	width: 100%;
+	height: 500px;
+	margin-right: 10px;
+	border-radius: 15px;
+	background-color: cover;
+	background-position: center center;
+	padding: 10px;
+	margin: 0;
+	max-width: 1050px;
+	max-height: 500px;
+	overflow: hidden;
+	margin-left: 20px;
+	
+}
+*/
+.carousel-cell:before {	/* 요소 내용 앞 새 콘텐츠 생성 */
+	display: block;
+	content: '';
+}

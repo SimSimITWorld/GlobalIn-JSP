@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+*{
+	box-sizing: border-box;
+}
+
+.carousel {
+	margin-top: 8%;
+}
+
+.carousel-cell {
+	width: 100%;
+	height: 500px;
+	margin-right: 10px;
+	border-radius: 15px;
+	background-color: cover;
+	background-position: center center;
+	padding: 0;
+	margin: 0;
+	max-width: 2320px;
+	max-height: 500px;
+	overflow: hidden;
+	margin-left: 20px;
+	
+}
+
+.carousel-cell:before {
+	display: block;
+	content: '';
+}
