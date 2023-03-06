@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행은 요기조기-문의</title>
+<title>여행은 요기조기-문의내용</title>
 <link rel="stylesheet" href="../Board.css" type="text/css">
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
@@ -42,12 +42,12 @@
 	
 		<ul class="navbar_menu">	<!-- 메뉴 -->
 			<li><a href="#">여행지탐색</a></li>
-			<li><a href="#">요기커뮤니티</a></li>
+			<li><a href="/Proprac/Free_Board/Free_Board_List.jsp">요기커뮤니티</a></li>
 			<li>
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
 						<li><a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">공지사항</a></li>
-						<li><a href="#">자주묻는질문</a></li>
+						<li><a href="/Proprac/Customer_Service_Center/자주묻는질문/FAQ_Board.jsp">자주묻는질문</a></li>
 						<li><a href="Inquiry_Board_List.jsp">문의게시판</a></li>
 					</ul>
 				

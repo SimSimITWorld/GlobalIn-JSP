@@ -8,7 +8,7 @@ String pageNo = request.getParameter("pageNo");
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>여행은 요기조기-삭제</title>
 <link href="../Board.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 function deleteSave(){

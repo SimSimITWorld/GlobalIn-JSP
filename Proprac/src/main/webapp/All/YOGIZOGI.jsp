@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Header</title>
+<title>여행은 요기조기-메인페이지</title>
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -46,7 +46,7 @@
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
 						<li><a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">공지사항</a></li>
-						<li><a href="#">자주묻는질문</a></li>
+						<li><a href="/Proprac/Customer_Service_Center/자주묻는질문/FAQ_Board.jsp">자주묻는질문</a></li>
 						<li><a href="/Proprac/Customer_Service_Center/문의게시판/Inquiry_Board_List.jsp">문의게시판</a></li>
 					</ul>
 				
