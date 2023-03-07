@@ -1,65 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.free.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-
-<%!
-
-	int pageSize=5;
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-%>
-
-<%
-
-	String pageNo = request.getParameter("pageNo");
-
-	String searchWhat = request.getParameter("searchWhat");
-	
-	String searchText = request.getParameter("searchText");
-	
-	if(searchText!=null){
-		searchText = new String(searchText.getBytes("UTF-8"),"UTF-8");
-	}
-	
-	if(pageNo==null){
-		pageNo="1";
-	}
-	
-	int currentPage = Integer.parseInt(pageNo);
-	
-	int startRow = (currentPage-1)*pageSize+1;
-	
-	int endRow = currentPage * pageSize;
-	
-
-	int count = 0;	// 글 수
-	int no = 0;	// 번호
-	
-	List<Inquiry_BoardVO> inquiry_List = null;
-	
-	Inquiry_BoardDAO inquiry_dbBoard = Inquiry_BoardDAO.getInstance();
-	
-	if(searchText == null){
-	
-		count = inquiry_dbBoard.getInquiryCount(); // 전체 글 수
-	
-		if(count>0){
-			inquiry_List = inquiry_dbBoard.getInquiry_Boards(startRow, endRow); // 게시글 가져오기
-		}
-	}else {
-		count = inquiry_dbBoard.getInquiryCount(searchWhat, searchText); // 전체 글 수
-		
-		if(count>0){
-			inquiry_List = inquiry_dbBoard.getInquiry_Boards(searchWhat, searchText ,startRow, endRow); // 게시글 가져오기
-		}
-	}
-	
-	
-	no = count-(currentPage-1)*pageSize;
-
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -125,12 +67,13 @@
 		</div>
 		<div class="board_write_wrap">	<!-- 타이틀 아래 영역(리스트, 페이지, 버튼) -->
 			<div class="board_write1">	<!-- 리스트 영역 -->
-			<% if(count==0){%>
-				
+			<c:if test="${count == 0 }">
 				<div align="right">
 					<div class="title" align="center">&nbsp;&nbsp;&nbsp;&nbsp;게시된 글이 없습니다.</div>
 				</div>
-			<%}else{ %>
+			</c:if>
+			<c:if test="${count > 0 }" >
+				<a href="/Free_Board/Free_Board.bdo?no=${free.no }&pageNo=${currentPage}">${free.title }</a>
 				<div class="top">		<!-- 리스트제목 영역 -->
 					<div class="num">번호</div>
 					<div class="title">제목</div>
@@ -138,73 +81,48 @@
 					<div class="date">작성일</div>
 					<div class="count">조회</div>
 				</div>
-			<%for(int i=0;i<inquiry_List.size();i++){
-					Inquiry_BoardVO inquiry_board = (Inquiry_BoardVO)inquiry_List.get(i);
-			%>
+				<c:forEach var="free" items="${freeList }">
 				<div>
-					<div class="num"><%=no-- %></div>
-					<div class="title"><a href="Inquiry_Board_Content.jsp?no=<%=inquiry_board.getNo() %>&pageNo=1"><%=inquiry_board.getTitle() %></a></div>
-					<div class="writer"><%=inquiry_board.getWriter() %></div>
-					<div class="date"><%=inquiry_board.getRegdate() %></div>
-					<div class="count"><%=inquiry_board.getReadcount() %></div>
+					<div class="num">
+						<c:out value="${number }" />
+						<c:set var="number" value="${number-1 }" />
+					</div>
+					<div class="title"><a href="Free_Board_Content.jsp?no=${free.no }&pageNo=${currentPage }">${free.title }</a></div>
+					<div class="writer">${free.writer }</div>
+					<div class="date">${free.regdate }</div>
+					<div class="count">${free.readcount }</div>
 				</div>
-			<%} %>	
+				</c:forEach>
 			</div>
+			</c:if>
 			<div class="board_page">	<!-- 페이지 영역 -->
-			<%
-				if(count>0){
-					
-					int pageBlock = 3;
-					int imsi = count % pageSize == 0 ? 0 : 1;
-					int pageCount = count/pageSize + imsi;
-					
-					int startPage = (int)((currentPage-1)/pageBlock)*pageBlock+1;
-					int endPage = startPage+pageBlock-1;
-					
-					if(endPage>pageCount){
-						endPage = pageCount;
-					}
-					
-					if(startPage > pageBlock){
-						
-						if(searchText==null){
-			%>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock %>" class="bt prev"><</a>
-				<%}	else{ %>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock %>&searchWhat=<%=searchWhat %>&searchText=<%=searchText %>" class="bt prev"><</a>
-				<%
-					   	} 
-					}
-				for(int i = startPage;i<=endPage;i++){
-					if(searchText==null){
-				%>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=i %>" class="num on"><%=i %></a>
-				<%
-					}else{
-				%>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=i %>&searchWhat=<%=searchWhat %>&searchText=<%=searchText %> %>" class="num on"><%=i %></a>
-				<%
-					}
-				}
+			<c:if test="${count >0 }">
+			
+				<c:set var="imsi" value="${count % pageSize == 0 ? 0 : 1 }" />
+				<c:set var="pageCount" value="${count/pageSize + imsi }" />
+				<c:set var="pageBlock" value="${3 }" />
 				
-				if(endPage < pageCount){
-					if(searchText==null){
-				%>
-						<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage+pageBlock %>" class="bt next">></a>
-				<%
-					}else{
-				%>
-						<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage+pageBlock %>&searchWhat=<%=searchWhat %>&searchText=<%=searchText %>" class="bt next">></a>
-				<%
-					}
-				}
+				<fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock }" integerOnly="true"></fmt:parseNumber>
+				<c:set var="startPage" value="${result * pageBlock +1 }" />
+				<c:set var="endPage" value="${startPage + pageBlock -1 }" />
 				
-				%>
+				<c:if test="${endPage>pageCount }">
+					<c:set var="endPage" value="${pageCount }" />
+				</c:if>
+				
+				<c:if test="${startPage>pageBlock }">
+					<a href="#" onclick="frm_sub(${startPage-pageBlock })" class="bt prev"><</a>
+				</c:if>
+				
+				<c:forEach var="i" begin="${startPage }" end="${endPage }" >
+					<a href="#" onclick="frm_sub(${i })" class="num on" >${i }</a>
+				</c:forEach>
+				
+				<c:if test="${endPage<pageCount }">
+					<a href="#" onclick="frm_sub(${startPage + pageBlock })" class="bt next">></a>
+				</c:if>
+			</c:if>
 			</div>
-			<%	
-				}
-			}
-			%>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
 				<input type="button" class="on" value="등록" onclick="javascript:window.location='Inquiry_Board_Write.jsp'">
 			</div>

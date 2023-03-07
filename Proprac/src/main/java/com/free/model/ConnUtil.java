@@ -11,6 +11,7 @@ public class ConnUtil {
 	static {
 		try {
 			InitialContext ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:/comp/env/jdbc/myoracle");
 		} catch (NamingException e) {
 		
 		}

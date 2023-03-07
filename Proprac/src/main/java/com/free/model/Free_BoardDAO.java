@@ -477,7 +477,157 @@ public class Free_BoardDAO {
 				}
 			}
 		}
-		
 		return result;
-	}
+	} // end deleteFree
+	
+	// 검색한 내용이 몇개인지를 반환하는 함수(what: 검색조건, content: 검색내용)
+	public int getFreeCount(String find, String find_box) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int x = 0;
+		
+		try {
+			
+			conn = ConnUtil.getConnection();
+			
+			if(find.equals("writer")) {
+				pstmt = conn.prepareStatement("select count(*) from proprac_free where writer=?");
+				pstmt.setString(1, find_box);
+			}else if(find.equals("title")) {
+				pstmt = conn.prepareStatement("select count(*) from proprac_free where title like '%" + find_box + "%'");
+			}else if(find.equals("content")) {
+				pstmt = conn.prepareStatement("select count(*) from proprac_free where content like '%" + find_box +"%'");
+			}else {
+				pstmt = conn.prepareStatement("select count(*) from proprac_free");
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				x = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+		return x;
+	} // end getFreeCount
+	
+	// 검색한 내용을 리스트로 받아서 반환하는 함수(what: 검색조건, content: 검색내용, start, end)
+	public List<Free_BoardVO> getFrees(String find, String find_box, int start, int end){
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Free_BoardVO> freeList = null;
+		
+		try {
+			
+			conn = ConnUtil.getConnection();
+			
+			StringBuffer sql = new StringBuffer();
+			sql.append("select * from ");
+			sql.append("(select rownum rnum, no, title, writer, pass, content, readcount, ref, step, depth, regdate from ");
+			if(find.equals("writer")) {
+				sql.append("(select * from proprac_free where writer like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				pstmt = conn.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else if(find.equals("title")) {
+				sql.append("(select * from proprac_free where title like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				pstmt = conn.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else if(find.equals("content")) {
+				sql.append("(select * from proprac_free where content like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				pstmt = conn.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else {
+				sql.append("(select * from proprac_free order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				pstmt = conn.prepareStatement(sql.toString());
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				freeList = new ArrayList<Free_BoardVO>(end-start+1);
+				
+				do {
+					
+					Free_BoardVO free = new Free_BoardVO();
+					free.setNo(rs.getInt("no"));
+					free.setTitle(rs.getString("title"));
+					free.setWriter(rs.getString("writer"));
+					free.setPass(rs.getString("pass"));
+					free.setContent(rs.getString("content"));
+					free.setReadcount(rs.getInt("readcount"));
+					free.setRef(rs.getInt("ref"));
+					free.setStep(rs.getInt("step"));
+					free.setDepth(rs.getInt("depth"));
+					free.setRegdate(rs.getTimestamp("regdate"));
+					
+					freeList.add(free);
+					
+				}while(rs.next());
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+		return freeList;
+	} // end getFrees
 }
