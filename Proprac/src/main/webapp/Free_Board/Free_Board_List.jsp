@@ -124,7 +124,7 @@
 			</c:if>
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
-				<input type="button" class="on" value="등록" onclick="javascript:window.location='Inquiry_Board_Write.jsp'">
+				<input type="button" class="on" value="등록" onclick="javascript:window.location='writeForm.bdo'">
 			</div>
 		</div>
 	</div>
