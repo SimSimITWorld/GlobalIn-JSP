@@ -3,6 +3,7 @@ package com.free.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -15,19 +16,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections4.map.HashedMap;
-
 import com.free.action.CommandAction;
 
-//@WebServlet("/ControllerAction")
-public class ControllerAction extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	private Map<String, Object> commandMap = new HashedMap<String, Object>();
 
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	private Map<String, Object> commandMap = new HashMap<String, Object>();
 	
 	public void init(ServletConfig config) throws ServletException {
-	
+		
 		String props = config.getInitParameter("propertyConfig");
 		
 		Properties pr = new Properties();
@@ -53,6 +52,7 @@ public class ControllerAction extends HttpServlet {
 				}
 			}
 		}
+		
 		Iterator<Object> keyIter = pr.keySet().iterator();
 		
 		while(keyIter.hasNext()) {
@@ -74,14 +74,15 @@ public class ControllerAction extends HttpServlet {
 			}catch(IllegalAccessException e) {
 				throw new ServletException();
 			}
-			
 		}
+		
 	}
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		requestPro(request, response);
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		requestPro(request, response);
@@ -101,6 +102,7 @@ public class ControllerAction extends HttpServlet {
 			
 			com = (CommandAction)commandMap.get(command);
 			view = com.requestPro(request, response);
+			
 		}catch(Throwable e) {
 			throw new ServletException(e);
 		}
@@ -108,6 +110,5 @@ public class ControllerAction extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}
-	
 
 }
