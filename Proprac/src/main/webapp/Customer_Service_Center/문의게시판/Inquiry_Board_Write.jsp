@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행은 요기조기-문의작성</title>
-<link rel="stylesheet" href="../Board.css"> 
+<link rel="stylesheet" href="../Board.css">
 <script type="text/javascript" src="Inquiry_script.js"></script>
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
@@ -14,9 +14,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/3e7bdacc74.js" crossorigin="anonymous"></script>
 <script src="/Proprac/Header/Header.js" defer></script> <!-- defer을 넣지 않으면 밑에 있는 자료들이 다 실행될 때까지 html이 브라우저에 표시되지 않음 -->
-<link rel="stylesheet" href="/Customer_Service_Center/Board.css">
 </head>
 <body>
+<%
+	int no=0, ref=1, step=0, depth=0;
+	try{
+		if(request.getParameter("no")!=null){
+			no	= Integer.parseInt(request.getParameter("no"));
+			ref = Integer.parseInt(request.getParameter("ref"));
+			step = Integer.parseInt(request.getParameter("step"));
+			depth = Integer.parseInt(request.getParameter("depth"));
+		}	
+%>
+
 <!-- 헤더 -->
 	<div class="nav_menu" style="position: relative; z-index: 3;">
 		<ul style="list-style-type: none">
@@ -40,7 +50,7 @@
 	
 		<ul class="navbar_menu">	<!-- 메뉴 -->
 			<li><a href="#">여행지탐색</a></li>
-			<li><a href="/Proprac/Free_Board/Free_Board_List.bdo">요기커뮤니티</a></li>
+			<li><a href="/Proprac/Free_Board/Free_Board.do?free=list">요기커뮤니티</a></li>
 			<li>
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
@@ -56,17 +66,6 @@
 			<i class="bi bi-list"></i>
 		</a>
 	</nav>
-<%
-	int no=0, ref=1, step=0, depth=0;
-
-	try{
-		if(request.getParameter("no")!=null){
-			no	= Integer.parseInt(request.getParameter("no"));
-			ref = Integer.parseInt(request.getParameter("ref"));
-			step = Integer.parseInt(request.getParameter("step"));
-			depth = Integer.parseInt(request.getParameter("depth"));
-		}	
-%>
 
 	<div class="board_wrap" style="position: relative; z-index: 1;">			<!-- 전체를 감싸고 있는 div 생성 -->
 		<div class="board_title">		<!-- 보드의 타이틀(ex. 문의게시판) -->
@@ -75,7 +74,7 @@
 		</div>
 		<form action="Inquiry_Board_Form.jsp" method="post" name="writeForm" onsubmit="return writeSave()">
 		
-		<input type="hidden" name="no" value="<%=no %>">
+		<input type="hidden" name="no" value="${free.no }">
 		<input type="hidden" name="ref" value="<%=ref %>">
 		<input type="hidden" name="step" value="<%=step %>">
 		<input type="hidden" name="dept" value="<%=depth %>">
@@ -110,7 +109,7 @@
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
 				<input type="submit" value="등록" class="on">
-				<input type="button" value="취소" onclick="javascript:window.location='Inquiry_Board.jsp''">
+				<input type="button" value="취소" onclick="javascript:window.location='Inquiry_Board_List.jsp'">
 			</div>
 		</div>
 		</form>

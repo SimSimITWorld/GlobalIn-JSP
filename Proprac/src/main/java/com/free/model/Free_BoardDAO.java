@@ -175,7 +175,7 @@ public class Free_BoardDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				
+				 
 				freeList = new ArrayList<Free_BoardVO>(end-start+1);
 				
 				do {
@@ -379,19 +379,18 @@ public class Free_BoardDAO {
 		try {
 			
 			conn = ConnUtil.getConnection();
-			sql = "select pass from proprac where no=?";
+			sql = "select pass from proprac_free where no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, free.getNo());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dbpass = rs.getString("pass");
 				if(dbpass.equals(free.getPass())) {
-					sql = "update proprac_board set title=?, writer=?, content=? where no=?";
+					sql = "update proprac_free set title=?, content=? where no=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, free.getTitle());
-					pstmt.setString(2, free.getWriter());
-					pstmt.setString(3, free.getContent());
-					pstmt.setInt(4, free.getNo());
+					pstmt.setString(2, free.getContent());
+					pstmt.setInt(3, free.getNo());
 					pstmt.executeUpdate();
 					result = 1;
 				}else {
@@ -449,6 +448,25 @@ public class Free_BoardDAO {
 		int result = -1;
 		
 		try {
+			
+			conn = ConnUtil.getConnection();
+			sql = "select pass from proprac_free where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dbpass = rs.getString("pass");
+				if(dbpass.equals(pass)) {
+					sql = "delete from proprac_free where no=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					pstmt.executeUpdate();
+					result=1;
+				}else {
+					result=0;
+				}
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

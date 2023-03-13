@@ -74,7 +74,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/3e7bdacc74.js" crossorigin="anonymous"></script>
 <script src="/Proprac/Header/Header.js" defer></script> <!-- defer을 넣지 않으면 밑에 있는 자료들이 다 실행될 때까지 html이 브라우저에 표시되지 않음 -->
-<link rel="stylesheet" href="/Customer_Service_Center/Board.css">
 </head>
 <body>
 <!-- 헤더 -->
@@ -100,7 +99,7 @@
 	
 		<ul class="navbar_menu">	<!-- 메뉴 -->
 			<li><a href="#">여행지탐색</a></li>
-			<li><a href="/Proprac/Free_Board/Free_Board_List.bdo">요기커뮤니티</a></li>
+			<li><a href="/Proprac/Free_Board/Free_Board_List.do?free=list">요기커뮤니티</a></li>
 			<li>
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
@@ -169,9 +168,9 @@
 						
 						if(searchText==null){
 			%>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock %>" class="bt prev"><</a>
+					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock+2 %>" class="bt prev"><</a>
 				<%}	else{ %>
-					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock %>&searchWhat=<%=searchWhat %>&searchText=<%=searchText %>" class="bt prev"><</a>
+					<a href="Inquiry_Board_List.jsp?pageNo=<%=startPage-pageBlock+2 %>&searchWhat=<%=searchWhat %>&searchText=<%=searchText %>" class="bt prev"><</a>
 				<%
 					   	} 
 					}

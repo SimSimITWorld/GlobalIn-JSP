@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행은 요기조기-문의게시판</title>
-<link rel="stylesheet" href="../Board.css">
+<title>여행은 요기조기-자유게시판</title>
+<link rel="stylesheet" href="Board.css">
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -42,13 +42,13 @@
 	
 		<ul class="navbar_menu">	<!-- 메뉴 -->
 			<li><a href="#">여행지탐색</a></li>
-			<li><a href="/Proprac/Free_Board/Free_Board_List.bdo">요기커뮤니티</a></li>
+			<li><a href="/Proprac/Free_Board/Free_Board.do?free=list">요기커뮤니티</a></li>
 			<li>
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
 						<li><a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">공지사항</a></li>
 						<li><a href="/Proprac/Customer_Service_Center/자주묻는질문/FAQ_Board.jsp">자주묻는질문</a></li>
-						<li><a href="Inquiry_Board_List.jsp">문의게시판</a></li>
+						<li><a href="/Proprac/Customer_Service_Center/문의게시판/Inquiry_Board_List.jsp">문의게시판</a></li>
 					</ul>
 				
 			</li>
@@ -86,15 +86,15 @@
 						<c:out value="${number }" />
 						<c:set var="number" value="${number-1 }"></c:set>
 					</div>
-					<div class="title"><a href="Inquiry_Board_Content.do?no=${free.no }&pageNo=${currentPage }">${free.title }</a></div>
+					<div class="title"><a href="Free_Board.do?free=content&no=${free.no }&pageNo=${currentPage }">${free.title }</a></div>
 					<div class="writer">${free.writer }</div>
 					<div class="date">${free.regdate }</div>
-					<div class="count">${free.count }</div>
+					<div class="count">${free.readcount }</div>
 				</div>
 				</c:forEach>
 			</c:if>	
 			</div>
-		
+			
 			<div class="board_page">	<!-- 페이지 영역 -->
 			<c:if test="${count>0 }">
 				<c:set var="imsi" value="${count%pageSize == 0 ? 0:1 }" />
@@ -110,20 +110,20 @@
 				</c:if>
 				
 				<c:if test="${startPage>pageBlock }">
-					<a href="#" onclick="frm_sub(${startPage-pageBlock})"><</a>
+					<a href="/Proprac/Free_Board/Free_Board.do?free=list&pageNo=${startPage-pageBlock+2 }" onclick="frm_sub(${startPage-pageBlock})" class="bt prev"><</a>
 				</c:if>
 				
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<a href="#" onclick="frm_sub(${i })">${i }</a> 
+					<a href="/Proprac/Free_Board/Free_Board.do?free=list&pageNo=${i }" onclick="frm_sub(${i })" class="num on">${i }</a> 
 				</c:forEach>
 				
 				<c:if test="${endPage<pageCount }">
-					<a href="#" onclick="frm_sub(${startPage+pageBlock})">></a>
+					<a href="/Proprac/Free_Board/Free_Board.do?free=list&pageNo=${startPage+pageBlock }" onclick="frm_sub(${startPage+pageBlock})" class="bt next">></a>
 				</c:if>
 			</c:if>
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
-				<input type="button" class="on" value="등록" onclick="javascript:window.location='Inquiry_Board_Write.jsp'">
+				<a href="Free_Board.do?free=write"><input type="button" class="on" value="등록"></a>
 			</div>
 		</div>
 	</div>

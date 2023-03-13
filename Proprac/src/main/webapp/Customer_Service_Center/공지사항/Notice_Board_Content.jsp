@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행은 요기조기-공지내용</title>
-<link rel="stylesheet" href="../Board.css" type="text/css">
+<link rel="stylesheet" href="../Board.css">
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -16,7 +16,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/3e7bdacc74.js" crossorigin="anonymous"></script>
 <script src="/Proprac/Header/Header.js" defer></script> <!-- defer을 넣지 않으면 밑에 있는 자료들이 다 실행될 때까지 html이 브라우저에 표시되지 않음 -->
-<link rel="stylesheet" href="/Customer_Service_Center/Board.css">
 </head>
 
 <!-- 헤더 -->
@@ -42,7 +41,7 @@
 	
 		<ul class="navbar_menu">	<!-- 메뉴 -->
 			<li><a href="#">여행지탐색</a></li>
-			<li><a href="/Proprac/Free_Board/Free_Board_List.bdo">요기커뮤니티</a></li>
+			<li><a href="/Proprac/Free_Board/Free_Board.do?free=list">요기커뮤니티</a></li>
 			<li>
 				<a href="/Proprac/Customer_Service_Center/공지사항/Notice_Board_List.jsp">고객센터</a>
 					<ul class="drop_menu3">
