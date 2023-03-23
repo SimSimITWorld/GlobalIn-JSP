@@ -573,22 +573,22 @@ public class Free_BoardDAO {
 			sql.append("select * from ");
 			sql.append("(select rownum rnum, no, title, writer, pass, content, readcount, ref, step, depth, regdate from ");
 			if(find.equals("writer")) {
-				sql.append("(select * from proprac_free where writer like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				sql.append("(select * from proprac_free where writer like '%" + find_box + "%' order by ref desc, step asc, no desc)) where rnum>=? and rnum<=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else if(find.equals("title")) {
-				sql.append("(select * from proprac_free where title like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				sql.append("(select * from proprac_free where title like '%" + find_box + "%' order by ref desc, step asc, no desc)) where rnum>=? and rnum<=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else if(find.equals("content")) {
-				sql.append("(select * from proprac_free where content like '%" + find_box + "%' order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				sql.append("(select * from proprac_free where content like '%" + find_box + "%' order by ref desc, step asc, no desc)) where rnum>=? and rnum<=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else {
-				sql.append("(select * from proprac_free order by ref desc, step asc)) where rnum>=? and rnum<=?");
+				sql.append("(select * from proprac_free order by ref desc, step asc, no desc)) where rnum>=? and rnum<=?");
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
@@ -648,4 +648,52 @@ public class Free_BoardDAO {
 		}
 		return freeList;
 	} // end getFrees
+	
+	// 댓글 DAO
+	public void commentWrite(Free_BoardVO reply) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "insert into proprac_free_reply values(?, ?, ?, ?, ?, ?)";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reply.getIdreply());
+			pstmt.setString(2, reply.getTitlereply());
+			pstmt.setString(3, reply.getWriterreply());
+			pstmt.setString(4, reply.getPassreply());
+			pstmt.setString(5, reply.getContentreply());
+			pstmt.setInt(6, reply.getParentno());
+			rs = pstmt.executeQuery();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+	}
 }

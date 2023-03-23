@@ -1,5 +1,6 @@
 package com.free.controller;
 
+import com.free.action.CommentAction;
 import com.free.action.ContentAction;
 import com.free.action.DeleteAction;
 import com.free.action.DeleteProcAction;
@@ -53,6 +54,8 @@ public class ActionFactory {
 			case "updateProc":
 				action = new UpdateProcAction();
 				break;
+			case "comment":
+				action = new CommentAction();
 		}
 		
 		return action;

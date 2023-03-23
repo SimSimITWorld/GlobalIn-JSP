@@ -94,7 +94,16 @@
 				</c:forEach>
 			</c:if>	
 			</div>
-			
+			<br>
+			<form align="center" name="find_frm" method="post" action="Free_Board.do?free=list" onsubmit="return check()">
+				<select name="find" size="1">
+					<option value="writer">작성자</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="find_box" >
+				<input type="submit" value="검색">
+			</form>
 			<div class="board_page">	<!-- 페이지 영역 -->
 			<c:if test="${count>0 }">
 				<c:set var="imsi" value="${count%pageSize == 0 ? 0:1 }" />

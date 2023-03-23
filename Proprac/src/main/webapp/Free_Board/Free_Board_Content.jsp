@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>여행은 요기조기-내용</title>
 <link rel="stylesheet" href="Board.css">
+<script type="text/javascript" src=""></script>
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -94,7 +95,20 @@
 				</div>
 				<div class="cont">		<!-- 글 내용 -->
 					<pre>${free.content }</pre>
-				</div>
+				</div> 
+				<div>[댓글 목록]<hr></div>
+				<form>
+					<input type="hidden" name="comment" value="comment_wrtie">
+					<input type="hidden" name="pno" value="${param.no }">
+					<table>
+						<tr>
+							<th>댓글</th>
+							<td><textarea rows="0" cols="40" name="c_content"></textarea> </td>
+							<td><input type="submit" value="댓글달기" onclick="return com_check"></td>
+						</tr>
+					</table>
+				</form>
+				<hr>
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
 				<input type="button" class="on" value="목록" onclick="document.location.href='Free_Board.do?free=list'">
