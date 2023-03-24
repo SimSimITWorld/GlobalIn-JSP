@@ -96,19 +96,17 @@
 				<div class="cont">		<!-- 글 내용 -->
 					<pre>${free.content }</pre>
 				</div> 
-				<div>[댓글 목록]<hr></div>
 				<form>
 					<input type="hidden" name="comment" value="comment_wrtie">
 					<input type="hidden" name="pno" value="${param.no }">
-					<table>
-						<tr>
-							<th>댓글</th>
-							<td><textarea rows="0" cols="40" name="c_content"></textarea> </td>
-							<td><input type="submit" value="댓글달기" onclick="return com_check"></td>
-						</tr>
-					</table>
+					<div class="comment">
+						<p class="comment_cmt">[${free.writer }님의 글에 댓글달기]</p>
+							<textarea placeholder="댓글을 입력해주세요." rows="5" cols="135" name="comment_text"></textarea>
+							<input type="submit" value="댓글달기"  name="comment_on"  onclick="return com_check">
+							<p></p>
+							<p style="margin-bottom: 10px"></p>
+					</div>
 				</form>
-				<hr>
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->
 				<input type="button" class="on" value="목록" onclick="document.location.href='Free_Board.do?free=list'">
