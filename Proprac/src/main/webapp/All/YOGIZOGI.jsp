@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,18 @@
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </head>
 <body>
+	<c:set var="loginID" value="${loginID }"></c:set>
 	<!-- 헤더 -->
 	<div class="nav_menu" style="position: relative; z-index: 3;">
 		<ul style="list-style-type: none">
+		<c:if test="${loginID!=null }">
 			<li style="display: inline"><a href="">로그인</a></li>
 			<li style="display: inline"><a href="">회원가입</a></li>
+		</c:if>
+		<c:if test="${loginID==null }">
+			<li style="display: inline">${loginID }님 환영합니다.</li>
+			<li style="display: inline"><a href="#" onclick="<c:set var="loginID" value="${loginId }"></c:set>">로그아웃</a></li>
+		</c:if>
 			<li style="display: inline"><a href="">마이페이지</a></li>
 		</ul>
 	</div>
