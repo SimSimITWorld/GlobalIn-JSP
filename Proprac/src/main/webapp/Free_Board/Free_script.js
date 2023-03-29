@@ -55,7 +55,7 @@ function deleteSave(){
 }
 
 function com_check(){
-	if(document.check.c_content.value.length==0){
+	if(document.check.comment_text.value.length==0){
 		alert("댓글 내용을 입력해주세요.");
 		return flase;
 	}

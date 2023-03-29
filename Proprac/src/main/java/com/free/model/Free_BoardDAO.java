@@ -655,17 +655,14 @@ public class Free_BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into proprac_free_reply values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into proprac_free_reply values(?, ?, sysdate, ?)";
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, reply.getIdreply());
-			pstmt.setString(2, reply.getTitlereply());
-			pstmt.setString(3, reply.getWriterreply());
-			pstmt.setString(4, reply.getPassreply());
-			pstmt.setString(5, reply.getContentreply());
-			pstmt.setInt(6, reply.getParentno());
+			pstmt.setString(1, reply.getWriterreply());
+			pstmt.setString(2, reply.getContentreply());
+			pstmt.setInt(3, reply.getParentno());
 			rs = pstmt.executeQuery();
 			
 		}catch(Exception e) {
@@ -695,5 +692,54 @@ public class Free_BoardDAO {
 				}
 			}
 		}
+	}
+	
+	public int commentCheck(String no) { // 댓글체크
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select * from proprac_free_reply where parentno=?";
+		
+		try {
+			
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result=1;
+			}else {
+				result=0;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 }

@@ -20,14 +20,17 @@ public class CommentAction implements Action {
 		HttpSession session = request.getSession();
 		reply = (Free_BoardVO)session.getAttribute("sessionId");
 		
-		reply.setIdreply(reply.getIdreply());
-		reply.setContentreply(request.getParameter("rcontent"));
+		reply.setWriterreply(reply.getWriterreply());
+		reply.setContentreply(request.getParameter("comment_text"));
 		reply.setParentno(Integer.parseInt(request.getParameter("pno")));
 		
 		Free_BoardDAO replyDAO = Free_BoardDAO.getInstance();
 		replyDAO.commentWrite(reply);
 		
-		return new ActionForward("Free_Board?free=content&no="+request.getParameter("pno"));
+	
+		
+		
+		return new ActionForward("/Free_Board/Free_Board_Content.jsp", false);
 		
 	}
 	

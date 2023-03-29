@@ -16,10 +16,7 @@ public class Free_BoardVO {
 	private Timestamp regdate;		// 날짜
 	
 	// 댓글
-	private String idreply;					// 댓글 아이디
-	private String titlereply;				// 댓글 제목
 	private String writerreply;				// 댓글 글쓴이 
-	private String passreply;				// 댓글 비밀번호
 	private String contentreply;			// 댓글 본문
 	private int parentno;					// 댓글 번호
 	private int rcount;						// 댓글 전체수
@@ -36,30 +33,14 @@ public class Free_BoardVO {
 	public void setRcount(int rcount) {
 		this.rcount = rcount;
 	}
-	public String getIdreply() {
-		return idreply;
-	}
-	public void setIdreply(String idreply) {
-		this.idreply = idreply;
-	}
-	public String getTitlereply() {
-		return titlereply;
-	}
-	public void setTitlereply(String titlereply) {
-		this.titlereply = titlereply;
-	}
+	
 	public String getWriterreply() {
 		return writerreply;
 	}
 	public void setWriterreply(String writerreply) {
 		this.writerreply = writerreply;
 	}
-	public String getPassreply() {
-		return passreply;
-	}
-	public void setPassreply(String passreply) {
-		this.passreply = passreply;
-	}
+
 	public String getContentreply() {
 		return contentreply;
 	}

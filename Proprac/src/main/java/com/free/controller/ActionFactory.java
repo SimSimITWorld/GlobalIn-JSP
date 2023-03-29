@@ -56,6 +56,7 @@ public class ActionFactory {
 				break;
 			case "comment":
 				action = new CommentAction();
+				break;
 		}
 		
 		return action;

@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>여행은 요기조기-내용</title>
 <link rel="stylesheet" href="Board.css">
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="Free_script.js"></script>
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" /> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -103,12 +103,12 @@
 					<pre>${free.content }</pre>
 				</div> 
 				<form>
-					<input type="hidden" name="comment" value="comment_wrtie">
+					<input type="hidden" name="comment" value="comment_write">
 					<input type="hidden" name="pno" value="${param.no }">
 					<div class="comment">
 						<p class="comment_cmt">[${free.writer }님의 글에 댓글달기]</p>
 							<textarea placeholder="댓글을 입력해주세요." rows="5" cols="135" name="comment_text"></textarea>
-							<input type="submit" value="댓글달기"  name="comment_on"  onclick="return com_check">
+							<input type="submit" value="댓글달기" onclick="return com_check()">
 							<p></p>
 							<p style="margin-bottom: 10px"></p>
 					</div>
