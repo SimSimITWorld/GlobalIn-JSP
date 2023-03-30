@@ -16,21 +16,20 @@ public class CommentAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		Free_BoardVO reply = new Free_BoardVO();
-		HttpSession session = request.getSession();
-		reply = (Free_BoardVO)session.getAttribute("sessionId");
 		
-		reply.setWriterreply(reply.getWriterreply());
-		reply.setContentreply(request.getParameter("comment_text"));
-		reply.setParentno(Integer.parseInt(request.getParameter("pno")));
+		reply.setWriterreply(request.getParameter("writerreply"));
+		reply.setContentreply(request.getParameter("contentreply"));
 		
-		Free_BoardDAO replyDAO = Free_BoardDAO.getInstance();
-		replyDAO.commentWrite(reply);
+		Free_BoardDAO replyPro = Free_BoardDAO.getInstance();
+		replyPro.commentWrite(reply);
 		
 	
 		
 		
-		return new ActionForward("/Free_Board/Free_Board_Content.jsp", false);
+		return new ActionForward("/Free_Board/Free_Board_Content.jsp");
 		
 	}
 	

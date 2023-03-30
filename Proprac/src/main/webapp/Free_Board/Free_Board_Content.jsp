@@ -102,7 +102,22 @@
 				<div class="cont">		<!-- 글 내용 -->
 					<pre>${free.content }</pre>
 				</div> 
-				<form>
+				<table>
+					<tr>
+						<th colspan="2">댓글 목록</th>
+					</tr>
+					<c:choose>
+						<c:when test="${message!=null }">
+							<tr>
+								<td></td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
+				</table>
+				<form action="/Proprac/Free_Board/Free_Board.do?free=content&no=${no }&pageNo=${pageNo }" method="post" name="check">
 					<input type="hidden" name="comment" value="comment_write">
 					<input type="hidden" name="pno" value="${param.no }">
 					<div class="comment">
