@@ -19,6 +19,7 @@ public class ContentAction implements Action {
 		
 		String pageNo = request.getParameter("pageNo");
 		
+		
 		Free_BoardDAO freePro = Free_BoardDAO.getInstance();
 		Free_BoardVO free = freePro.getFree(no);
 		

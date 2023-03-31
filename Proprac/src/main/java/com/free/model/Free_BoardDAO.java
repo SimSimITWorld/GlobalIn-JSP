@@ -238,6 +238,10 @@ public class Free_BoardDAO {
 		ResultSet rs = null;
 		Free_BoardVO free = null;
 		
+		// 댓글
+		PreparedStatement pstmtreply = null;
+		ResultSet rsreply = null;
+		
 		try {
 			
 			conn = ConnUtil.getConnection();
@@ -252,6 +256,11 @@ public class Free_BoardDAO {
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			
+			//String sqlreply = "select * from proprac_free_reply where parentno=?";
+			//pstmtreply = conn.prepareStatement(sqlreply);
+			//pstmtreply.setInt(1, no);
+			//rsreply = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				
 				free = new Free_BoardVO();
@@ -265,6 +274,10 @@ public class Free_BoardDAO {
 				free.setStep(rs.getInt("step"));
 				free.setDepth(rs.getInt("depth"));
 				free.setRegdate(rs.getTimestamp("regdate"));
+				
+				//free.setParentno(rs.getInt("no"));
+				//free.setContentreply(rsreply.getString("contentreply"));
+				//free.setWriterreply(rsreply.getString("writerreply"));
 			}
 			
 			
@@ -655,13 +668,13 @@ public class Free_BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into proprac_free_reply values(?, ?, sysdate, ?)";
+		String sql = "insert into proprac_free_reply values(proprac_free_reply_seq.nextval, ?, ?, sysdate, ?)";
 		
 		try {
-			
+			conn = ConnUtil.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, reply.getWriterreply());
-			pstmt.setString(2, reply.getContentreply());
+			pstmt.setString(1, reply.getCid());
+			pstmt.setString(2, reply.getCcontent());
 			pstmt.setInt(3, reply.getParentno());
 			rs = pstmt.executeQuery();
 			

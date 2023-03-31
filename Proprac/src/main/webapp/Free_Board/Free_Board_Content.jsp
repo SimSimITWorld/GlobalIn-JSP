@@ -117,12 +117,12 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<form action="/Proprac/Free_Board/Free_Board.do?free=content&no=${no }&pageNo=${pageNo }" method="post" name="check">
+				<form action="" method="post" name="check">
 					<input type="hidden" name="comment" value="comment_write">
 					<input type="hidden" name="pno" value="${param.no }">
 					<div class="comment">
 						<p class="comment_cmt">[${free.writer }님의 글에 댓글달기]</p>
-							<textarea placeholder="댓글을 입력해주세요." rows="5" cols="135" name="comment_text"></textarea>
+							<textarea placeholder="댓글을 입력해주세요." rows="5" cols="135" name="c_content"></textarea>
 							<input type="submit" value="댓글달기" onclick="return com_check()">
 							<p></p>
 							<p style="margin-bottom: 10px"></p>

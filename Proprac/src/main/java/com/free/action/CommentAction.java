@@ -20,8 +20,9 @@ public class CommentAction implements Action {
 		
 		Free_BoardVO reply = new Free_BoardVO();
 		
-		reply.setWriterreply(request.getParameter("writerreply"));
-		reply.setContentreply(request.getParameter("contentreply"));
+		reply.setCid(reply.getId());
+		reply.setCcontent(request.getParameter("c_content"));
+		reply.setParentno(Integer.parseInt(request.getParameter("no")));
 		
 		Free_BoardDAO replyPro = Free_BoardDAO.getInstance();
 		replyPro.commentWrite(reply);
