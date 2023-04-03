@@ -19,19 +19,28 @@
 <script src="https://kit.fontawesome.com/3e7bdacc74.js" crossorigin="anonymous"></script>
 <script src="/Proprac/Header/Header.js" defer></script> <!-- defer을 넣지 않으면 밑에 있는 자료들이 다 실행될 때까지 html이 브라우저에 표시되지 않음 -->
 </head>
-
+<body>
 <!-- 헤더 -->
+<% 
+	String id = null; 
+	if(session.getAttribute("id")!=null){
+		id = (String)session.getAttribute("id");
+	}
+%>
 	<div class="nav_menu" style="position: relative; z-index: 3;">
 		<ul style="list-style-type: none">
-		<c:if test="${loginID!=null }">
-			<li style="display: inline"><a href="">로그인</a></li>
-			<li style="display: inline"><a href="">회원가입</a></li>
-		</c:if>
-		<c:if test="${loginID==null }">
-			<li style="display: inline">${loginID }님 환영합니다.</li>
-			<li style="display: inline"><a href="#" onclick="<c:set var="loginID" value="${loginId }"></c:set>">로그아웃</a></li>
-		</c:if>
+		<%
+			if(id==null){
+		%>
+			<li style="display: inline"><a href="Signup.jsp">로그인</a></li>
+			<li style="display: inline"><a href="Signup.jsp">회원가입</a></li>
+		<% 
+			}else{
+		%>
+			<li style="display: inline">${id } 님 어서오세요</li>
 			<li style="display: inline"><a href="">마이페이지</a></li>
+			<li style="display: inline"><a href="logoutAction.jsp">로그아웃</a></li>
+		<%} %>
 		</ul>
 	</div>
 	<nav class="navbar" style="position: relative; z-index: 2;">			<!-- 헤드바  -->
@@ -66,8 +75,6 @@
 		</a>
 	</nav>
 <!-- 본문 -->
-
-<body>
 	<div class="board_wrap" style="position: relative; z-index: 1;">			<!-- 전체를 감싸고 있는 div 생성 -->
 		<div class="board_title">		<!-- 보드의 타이틀(ex. 공지사항) -->
 			<strong>자유게시판</strong>
@@ -83,6 +90,7 @@
 						<dt>번호</dt>
 						<dd>${free.no }</dd>
 					</dl>
+					<input type="hidden" name="no" value="${free.no }">
 					<dl>
 						<dt>작성자</dt>
 						<dd>${free.writer }</dd>
@@ -113,20 +121,37 @@
 							</tr>
 						</c:when>
 						<c:otherwise>
-							
+							<c:forEach var="free" items="replyList">
+								<tr>
+									<td><font size="3.5"><b>${id }</b>
+									${ctime }
+									</font>
+									 <br>${free}
+									</td>
+								</tr>
+							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<form action="" method="post" name="check">
-					<input type="hidden" name="comment" value="comment_write">
+				<form action="Free_Board/Free_Board.do?free=reply" method="post">
+				<c:if test="${id==null }">
+					<div class="comment">
+						<p class="comment_cmt">[${free.writer }님의 글에 댓글달기]</p>
+							<textarea placeholder="로그인 후 댓글을 작성할 수 있습니다." rows="5" cols="135" name="c_content" readonly></textarea>
+					</div>
+				</c:if>
+				<c:if test="${id!=null }">
+					<input type="hidden" name="id" value="${id }">
+					<input type="hidden" name="fno" value="${free.no }">
 					<input type="hidden" name="pno" value="${param.no }">
 					<div class="comment">
 						<p class="comment_cmt">[${free.writer }님의 글에 댓글달기]</p>
 							<textarea placeholder="댓글을 입력해주세요." rows="5" cols="135" name="c_content"></textarea>
-							<input type="submit" value="댓글달기" onclick="return com_check()">
+							<input type="submit" value="댓글달기">
 							<p></p>
 							<p style="margin-bottom: 10px"></p>
 					</div>
+				</c:if>
 				</form>
 			</div>
 			<div class="bt_wrap">		<!-- 버튼 영역 -->

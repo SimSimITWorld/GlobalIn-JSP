@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.*;
 
 public class Free_BoardDAO {
-
+	
 	private static Free_BoardDAO instance = null;
 	
-	private Free_BoardDAO() {}
+	public Free_BoardDAO() {}
 	
 	public static Free_BoardDAO getInstance() {
 		
@@ -675,7 +675,7 @@ public class Free_BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reply.getCid());
 			pstmt.setString(2, reply.getCcontent());
-			pstmt.setInt(3, reply.getParentno());
+			pstmt.setInt(3, reply.getNo());
 			rs = pstmt.executeQuery();
 			
 		}catch(Exception e) {
@@ -755,4 +755,100 @@ public class Free_BoardDAO {
 		}
 		return result;
 	}
+	
+	// 회원가입
+	public int join(Free_BoardVO free) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into loginid values(?, ?)";
+		try {
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, free.getId());
+			pstmt.setString(2, free.getPassword());
+			return pstmt.executeUpdate(); // 0이상 값이 return된 경우 성공 
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		return -1; //DB 오류 
+	}
+	
+	public int login(String id, String password) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select password from loginid WHERE id = ?";
+		try {
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString(1).equals(password))
+					return 1; //로그인 성공
+				else
+					return 0; // 비밀번호 틀림
+			}
+			return -1; // 아이디 없음 
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		return -2; //DB 오류 
+	}
+	
+	public ArrayList<Free_BoardVO> replyList(int no){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from proprac_free_reply where parentno=?";
+		ArrayList<Free_BoardVO> list = new ArrayList<Free_BoardVO>();
+		
+		try {
+			
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Free_BoardVO free = new Free_BoardVO();
+				free.setCid(rs.getString(1));
+				free.setCcontent(rs.getString(2));
+				free.setRegdate(rs.getTimestamp(3));
+				free.setParentno(rs.getInt(4));
+				list.add(free);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			
+			if(rs!=null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+		return list;
+	}
+	
 }

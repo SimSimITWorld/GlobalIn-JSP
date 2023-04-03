@@ -18,19 +18,28 @@
 <script src="https://kit.fontawesome.com/3e7bdacc74.js" crossorigin="anonymous"></script>
 <script src="/Proprac/Header/Header.js" defer></script> <!-- defer을 넣지 않으면 밑에 있는 자료들이 다 실행될 때까지 html이 브라우저에 표시되지 않음 -->
 </head>
-
+<body>
 <!-- 헤더 -->
+<% 
+	String id = null; 
+	if(session.getAttribute("id")!=null){
+		id = (String)session.getAttribute("id");
+	}
+%>
 	<div class="nav_menu" style="position: relative; z-index: 3;">
 		<ul style="list-style-type: none">
-		<c:if test="${loginID!=null }">
-			<li style="display: inline"><a href="">로그인</a></li>
-			<li style="display: inline"><a href="">회원가입</a></li>
-		</c:if>
-		<c:if test="${loginID==null }">
-			<li style="display: inline">${loginID }님 환영합니다.</li>
-			<li style="display: inline"><a href="#" onclick="<c:set var="loginID" value="${loginId }"></c:set>">로그아웃</a></li>
-		</c:if>
+		<%
+			if(id==null){
+		%>
+			<li style="display: inline"><a href="Signup.jsp">로그인</a></li>
+			<li style="display: inline"><a href="Signup.jsp">회원가입</a></li>
+		<% 
+			}else{
+		%>
+			<li style="display: inline">${id } 님 어서오세요</li>
 			<li style="display: inline"><a href="">마이페이지</a></li>
+			<li style="display: inline"><a href="logoutAction.jsp">로그아웃</a></li>
+		<%} %>
 		</ul>
 	</div>
 	<nav class="navbar" style="position: relative; z-index: 2;">			<!-- 헤드바  -->
@@ -78,7 +87,6 @@
 		int step = inquiry_board.getStep();
 		int depth = inquiry_board.getDepth();
 %>
-<body>
 	<div class="board_wrap" style="position: relative; z-index: 1;">			<!-- 전체를 감싸고 있는 div 생성 -->
 		<div class="board_title">		<!-- 보드의 타이틀(ex. 공지사항) -->
 			<strong>문의게시판</strong>

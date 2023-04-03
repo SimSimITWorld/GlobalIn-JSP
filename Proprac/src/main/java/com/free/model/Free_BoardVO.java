@@ -4,9 +4,6 @@ import java.sql.*;
 
 public class Free_BoardVO {
 	
-	// test
-	private String id;
-	
 	private int no;							// 번호
 	private String title;					// 제목
 	private String writer;				// 글쓴이
@@ -18,19 +15,29 @@ public class Free_BoardVO {
 	private int depth;					// 댓글이 몇개까지 달릴 수 있는지 한계설정(엔터표시같이 화살표)
 	private Timestamp regdate;		// 날짜
 	
-	// 댓글
-	private int cno;							// 댓글 번호
-	private String cid;						// 댓글 id 
-	private String ccontent;				// 댓글 본문
-	private Timestamp ctime;				// 댓글 시간
-	private int parentno;					// 글 번호
-	private int ccount;						// 댓글 전체수
+	// 유저
+	private String id;
+	private String password;
+	
+	// 댓글 VO
+	private int cno;
+	private String cid;
+	private String ccontent;
+	private Timestamp ctime;
+	private int parentno;
+	private int ccount;
 	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public int getCno() {
 		return cno;
@@ -56,17 +63,17 @@ public class Free_BoardVO {
 	public void setCtime(Timestamp ctime) {
 		this.ctime = ctime;
 	}
-	public int getCcount() {
-		return ccount;
-	}
-	public void setCcount(int ccount) {
-		this.ccount = ccount;
-	}
 	public int getParentno() {
 		return parentno;
 	}
 	public void setParentno(int parentno) {
 		this.parentno = parentno;
+	}
+	public int getCcount() {
+		return ccount;
+	}
+	public void setCcount(int ccount) {
+		this.ccount = ccount;
 	}
 	public int getNo() {
 		return no;

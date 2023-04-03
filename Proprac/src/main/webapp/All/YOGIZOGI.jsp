@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
+<head> 
+<meta charset="UTF-8"> 
 <title>여행은 요기조기-메인페이지</title>
 <!-- 헤더라인 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Header/Header.css" />
@@ -19,19 +19,27 @@
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </head>
 <body>
-	<c:set var="loginID" value="${loginID }"></c:set>
-	<!-- 헤더 -->
+<!-- 헤더 -->
+<% 
+	String id = null; 
+	if(session.getAttribute("id")!=null){
+		id = (String)session.getAttribute("id");
+	}
+%>
 	<div class="nav_menu" style="position: relative; z-index: 3;">
 		<ul style="list-style-type: none">
-		<c:if test="${loginID!=null }">
-			<li style="display: inline"><a href="">로그인</a></li>
-			<li style="display: inline"><a href="">회원가입</a></li>
-		</c:if>
-		<c:if test="${loginID==null }">
-			<li style="display: inline">${loginID }님 환영합니다.</li>
-			<li style="display: inline"><a href="#" onclick="<c:set var="loginID" value="${loginId }"></c:set>">로그아웃</a></li>
-		</c:if>
+		<%
+			if(id==null){
+		%>
+			<li style="display: inline"><a href="Signup.jsp">로그인</a></li>
+			<li style="display: inline"><a href="Signup.jsp">회원가입</a></li>
+		<% 
+			}else{
+		%>
+			<li style="display: inline">${id } 님 어서오세요</li>
 			<li style="display: inline"><a href="">마이페이지</a></li>
+			<li style="display: inline"><a href="logoutAction.jsp">로그아웃</a></li>
+		<%} %>
 		</ul>
 	</div>
 	<nav class="navbar" style="position: relative; z-index: 2;">			<!-- 헤드바  -->

@@ -5,6 +5,7 @@ import com.free.action.ContentAction;
 import com.free.action.DeleteAction;
 import com.free.action.DeleteProcAction;
 import com.free.action.ListAction;
+import com.free.action.ReplyAction;
 import com.free.action.UpdateAction;
 import com.free.action.UpdateProcAction;
 import com.free.action.WriteAction;
@@ -56,6 +57,9 @@ public class ActionFactory {
 				break;
 			case "comment":
 				action = new CommentAction();
+				break;
+			case "reply":
+				action = new ReplyAction();
 				break;
 		}
 		
