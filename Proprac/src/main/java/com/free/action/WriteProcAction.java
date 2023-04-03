@@ -31,7 +31,7 @@ public class WriteProcAction implements Action {
 		Free_BoardDAO freePro = Free_BoardDAO.getInstance();
 		freePro.insertFree(free);
 		
-		return new ActionForward("/Free_Board/Free_Board_WriteProc.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_WriteProc.jsp");
 	}
 
 }

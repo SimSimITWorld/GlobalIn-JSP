@@ -76,7 +76,7 @@ public class ListAction implements Action{
 	   request.setAttribute("find", new String(find));
 	   request.setAttribute("find_box",new String(find_box));
 		
-	   return new ActionForward("/Free_Board/Free_Board_List.jsp", false);
+	   return new ActionForward("/Sim/Free_Board/Free_Board_List.jsp", false);
 	}
 	
 }

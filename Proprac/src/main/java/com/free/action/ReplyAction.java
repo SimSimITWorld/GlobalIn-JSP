@@ -38,7 +38,7 @@ public class ReplyAction implements Action {
 		
 		
 		
-		return new ActionForward("/Free_Board/Free_Board_Reply.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_Reply.jsp");
 	}
 
 }

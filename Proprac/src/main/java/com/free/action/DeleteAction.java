@@ -19,7 +19,7 @@ public class DeleteAction implements Action {
 		request.setAttribute("no", new Integer(no));
 		request.setAttribute("pageNo", new Integer(pageNo));
 		
-		return new ActionForward("/Free_Board/Free_Board_Delete.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_Delete.jsp");
 	}
 
 }

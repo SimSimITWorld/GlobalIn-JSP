@@ -33,7 +33,7 @@ public class UpdateProcAction implements Action {
 		request.setAttribute("pageNo", new Integer(pageNo));
 		request.setAttribute("check", new Integer(check));
 		
-		return new ActionForward("/Free_Board/Free_Board_UpdateProc.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_UpdateProc.jsp");
 	}
 
 }

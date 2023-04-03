@@ -30,7 +30,7 @@ public class CommentAction implements Action {
 	
 		
 		
-		return new ActionForward("/Free_Board/Free_Board_Content.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_Content.jsp");
 		
 	}
 	

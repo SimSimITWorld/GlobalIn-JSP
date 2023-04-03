@@ -24,7 +24,7 @@ public class UpdateAction implements Action {
 		request.setAttribute("pageNo", new Integer(pageNo));
 		request.setAttribute("free", free);
 		
-		return new ActionForward("/Free_Board/Free_Board_Update.jsp");
+		return new ActionForward("/Sim/Free_Board/Free_Board_Update.jsp");
 	}
 
 }

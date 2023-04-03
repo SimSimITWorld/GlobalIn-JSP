@@ -33,7 +33,7 @@ public class WriteAction implements Action {
 		request.setAttribute("step", new Integer(step));
 		request.setAttribute("depth", new Integer(depth));
 		
-		return new ActionForward("/Free_Board/Free_Board_Write.jsp", false);
+		return new ActionForward("/Sim/Free_Board/Free_Board_Write.jsp", false);
 	}
 
 }
